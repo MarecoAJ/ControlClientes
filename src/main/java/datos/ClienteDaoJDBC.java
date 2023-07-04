@@ -64,7 +64,7 @@ public class ClienteDaoJDBC {
             stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
             stmt.setInt(1, cliente.getIdCliente());
             rs = stmt.executeQuery();
-            rs.absolute(1);//nos posicionamos en el primer registro devuelto
+            rs.next();//nos posicionamos en el primer registro devuelto
 
             String nombre = rs.getString("nombre");
             String apellido = rs.getString("apellido");
@@ -80,6 +80,7 @@ public class ClienteDaoJDBC {
 
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
+            
         } finally {
             Conexion.close(rs);
             Conexion.close(stmt);
