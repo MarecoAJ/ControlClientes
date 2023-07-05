@@ -102,14 +102,13 @@ public class ServletControlador extends HttpServlet {
 
         int regMod = new ClienteDaoJDBC().insertar(cliente);
         System.out.println("reg modificadors " + regMod);
-
         this.accionDefault(request, response);
     }
 
     private void modificarCliente(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int idCliente = Integer.parseInt(request.getParameter("idCliente"));        
+        int idCliente = Integer.parseInt(request.getParameter("idCliente"));
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
         String email = request.getParameter("email");
@@ -124,20 +123,18 @@ public class ServletControlador extends HttpServlet {
 
         int regMod = new ClienteDaoJDBC().actualizar(cliente);
         System.out.println("reg modificadors " + regMod);
-
         this.accionDefault(request, response);
     }
-    
-        private void eliminarCliente(HttpServletRequest request, HttpServletResponse response)
+
+    private void eliminarCliente(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int idCliente = Integer.parseInt(request.getParameter("idCliente"));        
+        int idCliente = Integer.parseInt(request.getParameter("idCliente"));
 
         Cliente cliente = new Cliente(idCliente);
 
         int regMod = new ClienteDaoJDBC().eliminar(cliente);
         System.out.println("reg modificadors " + regMod);
-
         this.accionDefault(request, response);
     }
 }

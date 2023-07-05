@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDaoJDBC {
-    
+
     private static final String SQL_SELECT = "SELECT id_cliente, nombre, apellido, email, telefono, saldo "
             + " FROM cliente";
 
@@ -77,10 +77,8 @@ public class ClienteDaoJDBC {
             cliente.setEmail(email);
             cliente.setTelefono(telefono);
             cliente.setSaldo(saldo);
-
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            
         } finally {
             Conexion.close(rs);
             Conexion.close(stmt);
@@ -101,7 +99,6 @@ public class ClienteDaoJDBC {
             stmt.setString(3, cliente.getEmail());
             stmt.setString(4, cliente.getTelefono());
             stmt.setDouble(5, cliente.getSaldo());
-
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -125,7 +122,6 @@ public class ClienteDaoJDBC {
             stmt.setString(4, cliente.getTelefono());
             stmt.setDouble(5, cliente.getSaldo());
             stmt.setInt(6, cliente.getIdCliente());
-
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -144,7 +140,6 @@ public class ClienteDaoJDBC {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_DELETE);
             stmt.setInt(1, cliente.getIdCliente());
-
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -154,5 +149,4 @@ public class ClienteDaoJDBC {
         }
         return rows;
     }
-
 }
