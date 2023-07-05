@@ -21,6 +21,9 @@ public class ServletControlador extends HttpServlet {
                 case "editar":
                     this.editarCliente(request, response);
                     break;
+                case "eliminar":
+                    this.eliminarCliente(request, response);
+                    break;
                 default:
                     this.accionDefault(request, response);
             }
@@ -120,6 +123,19 @@ public class ServletControlador extends HttpServlet {
         Cliente cliente = new Cliente(idCliente, nombre, apellido, email, telefono, saldo);
 
         int regMod = new ClienteDaoJDBC().actualizar(cliente);
+        System.out.println("reg modificadors " + regMod);
+
+        this.accionDefault(request, response);
+    }
+    
+        private void eliminarCliente(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        int idCliente = Integer.parseInt(request.getParameter("idCliente"));        
+
+        Cliente cliente = new Cliente(idCliente);
+
+        int regMod = new ClienteDaoJDBC().eliminar(cliente);
         System.out.println("reg modificadors " + regMod);
 
         this.accionDefault(request, response);
